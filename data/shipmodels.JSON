@@ -1,0 +1,6 @@
+{
+	"paladin" 		: {"name": "paladin", "offense": "6", "defense": "5", "utility": "9", "picture" : "https://www.fracturedspace.com/ship/paladin-2/"} ,
+	"aegis"			: "https://www.fracturedspace.com/ship/aegis-2/",
+	"executioner"	: "https://www.fracturedspace.com/ship/executioner/",
+	"persecutor"	: "https://www.fracturedspace.com/ship/persecutor-2/"
+}
