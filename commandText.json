@@ -1,7 +1,9 @@
 {
 "memberJoined" 		: 	" has joined the Fractured Space hub!",
 "memberLeft"		:	" has left the Fractured Space hub",
-"kickDenied"		:	" You have no permission to kick that person",
-"kickUser"			:	" Fires Gauss Cannon at ",
-"botPlaying"		:	" Fractured Space"
+"kickDenied"		:	"You have no permission to kick that person",
+"kickUserStart"		:	"Charging Gauss Cannon ",
+"kickUserEnd"		: 	"Fires Gauss Cannon at",
+"botPlaying"		:	"Fractured Space",
+"unknownShip"		:	"I don't know that ship"
 }

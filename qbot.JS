@@ -5,6 +5,10 @@ const shipmodels = require ('./data/shipmodels');
 const fs = require ("fs");
 const str = require ('./commandText.json');
 
+let countDownVal = 0;
+let userToKick = 0;
+let testVal = 0;
+
 
 var newUsers = new Discord.Collection();
 
@@ -19,21 +23,20 @@ client.on("message", msg => {
 // you can use the test command to test new ideas
 //
 	if(msg.content.startsWith(config.prefix + "test")){
-	let args = msg.content.split(" ").slice(2);
-	
-	let perms = msg.channel.permissionsFor(msg.member).hasPermission("KICK_MEMBERS");
-	if(perms){
-	msg.channel.sendMessage(myGuildMember.nickname);
+		msg.channel.sendMessage("hello world");
+	//	msg.channel.sendMessage(client.user.lastMessageID);
+		// let testInt = 0;
+		// testVal++;
+		// if(testVal == 1) {
+		// 	msg.channel.sendMessage("testing");
+		// }
+		
+		// if(testVal == 2){
+		// 	msg.edit("new message");
+			
+		// }
 
-	//	msg.channel.sendMessage(" Fires railgun at " + myGuildMember.nickname);
-	//	msg.channel.sendMessage(" *click* *click* jammed...");
-
-	}
-	else
-		msg.channel.sendMessage(" you cant kick people" );
-
-
-
+				
 	}
 
 	// command "show" shows the specs of the ship in the 2nd command
@@ -57,17 +60,17 @@ client.on("message", msg => {
     }
 
 
-
 // command "kick". kicks the mentioned user.
     else if (msg.content.startsWith(config.prefix + "kick")){	
 
 		//checks if the user has the permission to kick members
 		let perms = msg.channel.permissionsFor(msg.member).hasPermission("KICK_MEMBERS"); 
 					
-		if(perms){     															
-    	let userToKick = msg.mentions.users.first(); //select mentioned user
-    	msg.guild.member(userToKick).kick(); 		//kick user
-    	msg.channel.sendMessage(str.kickUser + userToKick);
+		if(perms){     													
+		userToKick = msg.mentions.users.first();
+		msg.channel.sendMessage(str.kickUserStart);		
+		countDownVal = 6;
+		kickTimer = setInterval(function(){kickCountDown(msg)} , 1000);
 
     	}
     	else{ // message if you have no permission to kick members. 							//TO DO: add check to see if the bot has permission
@@ -75,6 +78,22 @@ client.on("message", msg => {
     	}
 	}
 });
+
+function kickCountDown(msg){
+	countDownVal--;
+	if(countDownVal > 0)
+	//	msg.edit(countDownVal);
+	msg.channel.sendMessage(countDownVal);
+	else{
+		clearInterval(kickTimer);
+		//now kick some ass
+		msg.channel.sendMessage(str.kickUserEnd + userToKick);
+		//let userToKick = msg.mentions.users.first(); //select mentioned user
+    	msg.guild.member(userToKick).kick(); 		//kick user
+    	
+	}
+}
+
 
 // this is not working yet (i think)
 client.on("guildMemberAdd", (member) => {
@@ -104,17 +123,18 @@ function getShipData(shipName, msg){
 			msg.channel.sendMessage(shipmodels[shipName].picture); //sens websitelink to picture
 		}
 		catch(err){ //not all ships have all properties yet
-			console.log("error: " + err);
+			//console.log("error: " + err);
 			msg.channel.sendMessage("something went wrong");
 		}
 
 }
 
 
+
 //login init
 client.on('ready', () => {
 	client.user.setAvatar('./pics/IX209.PNG'); 
-	client.user.setGame("Fractured space");
+	client.user.setGame(str.playing);
   console.log('I am ready!');
 });
 
