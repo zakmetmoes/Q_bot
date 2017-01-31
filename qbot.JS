@@ -9,56 +9,89 @@ var newUsers = new Discord.Collection();
 
 client.on("message", msg => {
 
-//let prefix = "A, ";
-	
-// first checks
 
+// test if the message starts with the prefix and is not send
+// by the bot itself, else return;
 	if (!msg.content.startsWith(config.prefix)) return;
 	if(msg.author.bot) return;
 
-	//if(msg.content) msg.channel.sendMessage("testing");
+// you can use the test command to test new ideas
+//
 	if(msg.content.startsWith(config.prefix + "test")){
-		let args = msg.content.split(" ").slice(2);
+	let args = msg.content.split(" ").slice(2);
+	
+	let perms = msg.channel.permissionsFor(msg.member).hasPermission("KICK_MEMBERS");
+	if(perms){
+	msg.channel.sendMessage(myGuildMember.nickname);
 
-		msg.channel.sendMessage("nothing to test");
+	//	msg.channel.sendMessage(" Fires railgun at " + myGuildMember.nickname);
+	//	msg.channel.sendMessage(" *click* *click* jammed...");
 
 	}
+	else
+		msg.channel.sendMessage(" you cant kick people" );
+
+
+
+	}
+
+	// command "show" shows the specs of the ship in the 2nd command
 	else if(msg.content.startsWith(config.prefix + "show" )){
-		let args = msg.content.split(" ").slice(2);
-		//msg.channel.sendMessage(getShipPic(args[0],msg));
-		getShipPic(args[0], msg);
-		console.log("request ship: "+ args[0]);
+		let args = msg.content.split(" ").slice(2); 
+// put all words seperated by spaces in an array 
+// NOTE: slice(2) means delete first 2 arguments
+// this would normally be one but our prefix has a space too.
+		if(!args[0] === "undefined" ){
+		getShipData(args[0], msg); 
+		}
 	}
 
+//well..
     else if (msg.content.startsWith(config.prefix + "ping")) {
         msg.channel.sendMessage("pong!");
     }
     else if (msg.content.startsWith(config.prefix + "foo")) {
       msg.channel.sendMessage("bar!");
     }
-    else if (msg.content.startsWith(config.prefix + "kick")){
-    	let userToKick = msg.mentions.users.first();
-    	msg.guild.member(userToKick).kick();
-    	msg.channel.sendMessage(userToKick + "has been kicked" );
-    }
 
 
+
+// command "kick". kicks the mentioned user.
+    else if (msg.content.startsWith(config.prefix + "kick")){	
+
+		//checks if the user has the permission to kick members
+		let perms = msg.channel.permissionsFor(msg.member).hasPermission("KICK_MEMBERS"); 
+					
+		if(perms){     															
+    	let userToKick = msg.mentions.users.first(); //select mentioned user
+    	msg.guild.member(userToKick).kick(); 		//kick user
+    	msg.channel.sendMessage("Fires railgun at " + userToKick);
+
+    	}
+    	else{ // message if you have no permission to kick members. 							//TO DO: add check to see if the bot has permission
+    		msg.channel.sendMessage("you can't kick that person");
+    	}
+	}
 });
 
+// this is not working yet (i think)
 client.on("guildMemberAdd", (member) => {
-	const guild = member.guild;
-	newUser.set(member.user.id, member.user);
+	const curGuild = member.guild;
+	curGuild.channels.get(curGuild.id).sendMessage(member.user + "has joined the Fractured Space hub!");
 
-	if(newUsers.size >10);
 });
 
+// whenever a user leaves the guild, do this
 client.on("guildMemberRemove", (member) => {
-	if(newUsers.exists("id", member.user.id)) newUsers.delete(member.user.id);
+	const curGuild = member.guild;	//what's the guild?
+	curGuild.channels.get(curGuild.id).sendMessage(member.user + " has left the Fractured Space hub");
+
 });
 
 
-function getShipPic(shipName, msg){
-	//msg.channel.sendMessage("shipName my ass");
+//uses string input of the user to find the properties of the ship in the list in data/shipmodels
+function getShipData(shipName, msg){
+
 	try {
 			msg.channel.sendMessage(
 			"**offense " + shipmodels[shipName].offense + 
@@ -66,16 +99,19 @@ function getShipPic(shipName, msg){
 			", utility " + shipmodels[shipName].utility + 
 			"**");
 
-			msg.channel.sendMessage(shipmodels[shipName].picture);
+			msg.channel.sendMessage(shipmodels[shipName].picture); //sens websitelink to picture
 		}
-		catch(err){
+		catch(err){ //not all ships have all properties yet
 			console.log("error: " + err);
+			msg.channel.sendMessage("something went wrong");
 		}
 
 }
 
+
+//login init
 client.on('ready', () => {
-	client.user.setAvatar('./pics/IX209.PNG');
+	client.user.setAvatar('./pics/IX209.PNG'); 
 	client.user.setGame("Fractured space");
   console.log('I am ready!');
 });
