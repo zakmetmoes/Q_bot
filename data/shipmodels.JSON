@@ -2,5 +2,13 @@
 	"paladin" 		: {"name": "paladin", "offense": "6", "defense": "5", "utility": "9", "picture" : "https://www.fracturedspace.com/ship/paladin-2/"} ,
 	"aegis"			: "https://www.fracturedspace.com/ship/aegis-2/",
 	"executioner"	: "https://www.fracturedspace.com/ship/executioner/",
-	"persecutor"	: "https://www.fracturedspace.com/ship/persecutor-2/"
+	"persecutor"	: "https://www.fracturedspace.com/ship/persecutor-2/",
+	"sentinel"		: {"name": "sentinel", "offense": "6", "defense": "6", "utility": "8", "picture" : "https://www.fracturedspace.com/ship/sentinel/"} ,
+	"basilisk"		: {"name": "basilisk", "offense": "6", "defense": "6", "utility": "9", "picture" : "https://www.fracturedspace.com/ship/basilisk/"} ,
+	"interceptor"	: {"name": "interceptor", "offense": "8", "defense": "6", "utility": "6", "picture" : "https://www.fracturedspace.com/ship/interceptor/"} ,
+	"equalizer"		: {"name": "equalizer", "offense": "6", "defense": "6", "utility": "6", "picture" : "https://www.fracturedspace.com/ship/equalizer/"} ,
+	"leviathan"		: {"name": "leviathan", "offense": "6", "defense": "8", "utility": "6", "picture" : "https://www.fracturedspace.com/ship/leviathan/"} ,
+	"protector"		: {"name": "protector", "offense": "5", "defense": "6", "utility": "9", "picture" : "https://www.fracturedspace.com/ship/protector/"} ,
+	"raven"			: {"name": "raven", "offense": "7", "defense": "3", "utility": "6", "picture" : "https://www.fracturedspace.com/ship/raven/"} ,
+	"reaper"		: {"name": "reaper", "offense": "8", "defense": "7", "utility": "5", "picture" : "https://www.fracturedspace.com/ship/reaper/"}
 }
