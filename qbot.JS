@@ -1,7 +1,7 @@
 const Discord = require("discord.js");
 const client = new Discord.Client();
 const config = require('./config.json');
-const shipmodels = require ('./data/shipmodels');
+const shipmodels = require ('./data/shipmodels.json');
 const fs = require ("fs");
 const str = require ('./commandText.json');
 
