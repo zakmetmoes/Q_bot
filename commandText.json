@@ -1,0 +1,7 @@
+{
+"memberJoined" 		: 	" has joined the Fractured Space hub!",
+"memberLeft"		:	" has left the Fractured Space hub",
+"kickDenied"		:	" You have no permission to kick that person",
+"kickUser"			:	" Fires Gauss Cannon at ",
+"botPlaying"		:	" Fractured Space"
+}

@@ -3,6 +3,7 @@ const client = new Discord.Client();
 const config = require('./config.json');
 const shipmodels = require ('./data/shipmodels');
 const fs = require ("fs");
+const str = require ('./commandText.json');
 
 
 var newUsers = new Discord.Collection();
@@ -37,13 +38,14 @@ client.on("message", msg => {
 
 	// command "show" shows the specs of the ship in the 2nd command
 	else if(msg.content.startsWith(config.prefix + "show" )){
-		let args = msg.content.split(" ").slice(2); 
+		let args = msg.content.split(" ").slice(2);
 // put all words seperated by spaces in an array 
 // NOTE: slice(2) means delete first 2 arguments
 // this would normally be one but our prefix has a space too.
-		if(!args[0] === "undefined" ){
+		if(args[0] != "undefined" ){
 		getShipData(args[0], msg); 
 		}
+		else msg.channel.sendMessage("ship was undefined");
 	}
 
 //well..
@@ -65,11 +67,11 @@ client.on("message", msg => {
 		if(perms){     															
     	let userToKick = msg.mentions.users.first(); //select mentioned user
     	msg.guild.member(userToKick).kick(); 		//kick user
-    	msg.channel.sendMessage("Fires railgun at " + userToKick);
+    	msg.channel.sendMessage(str.kickUser + userToKick);
 
     	}
     	else{ // message if you have no permission to kick members. 							//TO DO: add check to see if the bot has permission
-    		msg.channel.sendMessage("you can't kick that person");
+    		msg.channel.sendMessage(str.kickDenied);
     	}
 	}
 });
@@ -77,14 +79,14 @@ client.on("message", msg => {
 // this is not working yet (i think)
 client.on("guildMemberAdd", (member) => {
 	const curGuild = member.guild;
-	curGuild.channels.get(curGuild.id).sendMessage(member.user + "has joined the Fractured Space hub!");
+	curGuild.channels.get(curGuild.id).sendMessage(member.user + str.memberJoined);
 
 });
 
 // whenever a user leaves the guild, do this
 client.on("guildMemberRemove", (member) => {
 	const curGuild = member.guild;	//what's the guild?
-	curGuild.channels.get(curGuild.id).sendMessage(member.user + " has left the Fractured Space hub");
+	curGuild.channels.get(curGuild.id).sendMessage(member.user + str.memberLeft);
 
 });
 
