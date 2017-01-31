@@ -15,7 +15,7 @@
 	"pioneer"		: {"name": "Pioneer", "offense": "8", "defense": "6", "utility": "6", "picture" : "https://www.fracturedspace.com/ship/pioneer/"},
 	"ranger"		: {"name": "Ranger", "offense": "7", "defense": "6", "utility": "5", "picture" : "https://www.fracturedspace.com/ship/ranger-2/"},
 	"guardian"		: {"name": "Guardian", "offense": "9", "defense": "5", "utility": "5", "picture" : "https://www.fracturedspace.com/ship/guardian/"},
-	"black widow"	: {"name": "Black Widow", "offense": "8", "defense": "6", "utility": "5", "picture" : "https://www.fracturedspace.com/ship/black-widow/"},
+	"black"			: {"name": "Black Widow", "offense": "8", "defense": "6", "utility": "5", "picture" : "https://www.fracturedspace.com/ship/black-widow/"},
 	"brawler"		: {"name": "Brawler", "offense": "8", "defense": "7", "utility": "6", "picture" : "https://www.fracturedspace.com/ship/brawler/"},
 	"colossus"		: {"name": "Colossus", "offense": "7", "defense": "8", "utility": "5", "picture" : "https://www.fracturedspace.com/ship/colossus/"},
 	"destroyer"		: {"name": "Destroyer", "offense": "7", "defense": "8", "utility": "5", "picture" : "https://www.fracturedspace.com/ship/destroyer/"},
